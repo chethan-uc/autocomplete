@@ -1,0 +1,1172 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> expression OR_OP expression
+Rule 2     expression -> expression AND_OP expression
+Rule 3     expression -> expression expression
+Rule 4     unary_expression -> PLUS unary_expression
+Rule 5     unary_expression -> MINUS unary_expression
+Rule 6     unary_expression -> NOT unary_expression
+Rule 7     expression -> unary_expression
+Rule 8     unary_expression -> LPAREN expression RPAREN
+Rule 9     unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+Rule 10    unary_expression -> TERM COLUMN unary_expression
+Rule 11    unary_expression -> PHRASE
+Rule 12    unary_expression -> PHRASE APPROX
+Rule 13    expression -> expression BOOST
+Rule 14    unary_expression -> TERM
+Rule 15    unary_expression -> unary_expression unary_expression
+Rule 16    unary_expression -> TERM APPROX
+Rule 17    unary_expression -> REGEX
+Rule 18    unary_expression -> TO
+Rule 19    phrase_or_term -> TERM
+Rule 20    phrase_or_term -> PHRASE
+
+Terminals, with rules where they appear
+
+AND_OP               : 2
+APPROX               : 12 16
+BOOST                : 13
+COLUMN               : 10
+LBRACKET             : 9
+LPAREN               : 8
+MINUS                : 5
+NOT                  : 6
+OR_OP                : 1
+PHRASE               : 11 12 20
+PLUS                 : 4
+RBRACKET             : 9
+REGEX                : 17
+RPAREN               : 8
+TERM                 : 10 14 16 19
+TO                   : 9 18
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 1 2 2 3 3 8 13 0
+phrase_or_term       : 9 9
+unary_expression     : 4 5 6 7 10 15 15
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . expression OR_OP expression
+    (2) expression -> . expression AND_OP expression
+    (3) expression -> . expression expression
+    (7) expression -> . unary_expression
+    (13) expression -> . expression BOOST
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+    expression                     shift and go to state 1
+    unary_expression               shift and go to state 2
+
+state 1
+
+    (0) S' -> expression .
+    (1) expression -> expression . OR_OP expression
+    (2) expression -> expression . AND_OP expression
+    (3) expression -> expression . expression
+    (13) expression -> expression . BOOST
+    (1) expression -> . expression OR_OP expression
+    (2) expression -> . expression AND_OP expression
+    (3) expression -> . expression expression
+    (7) expression -> . unary_expression
+    (13) expression -> . expression BOOST
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    OR_OP           shift and go to state 13
+    AND_OP          shift and go to state 14
+    BOOST           shift and go to state 15
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+    expression                     shift and go to state 12
+    unary_expression               shift and go to state 2
+
+state 2
+
+    (7) expression -> unary_expression .
+    (15) unary_expression -> unary_expression . unary_expression
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for LBRACKET resolved as shift
+  ! shift/reduce conflict for TERM resolved as shift
+  ! shift/reduce conflict for PHRASE resolved as shift
+  ! shift/reduce conflict for REGEX resolved as shift
+  ! shift/reduce conflict for TO resolved as shift
+    OR_OP           reduce using rule 7 (expression -> unary_expression .)
+    AND_OP          reduce using rule 7 (expression -> unary_expression .)
+    BOOST           reduce using rule 7 (expression -> unary_expression .)
+    $end            reduce using rule 7 (expression -> unary_expression .)
+    RPAREN          reduce using rule 7 (expression -> unary_expression .)
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+  ! PLUS            [ reduce using rule 7 (expression -> unary_expression .) ]
+  ! MINUS           [ reduce using rule 7 (expression -> unary_expression .) ]
+  ! NOT             [ reduce using rule 7 (expression -> unary_expression .) ]
+  ! LPAREN          [ reduce using rule 7 (expression -> unary_expression .) ]
+  ! LBRACKET        [ reduce using rule 7 (expression -> unary_expression .) ]
+  ! TERM            [ reduce using rule 7 (expression -> unary_expression .) ]
+  ! PHRASE          [ reduce using rule 7 (expression -> unary_expression .) ]
+  ! REGEX           [ reduce using rule 7 (expression -> unary_expression .) ]
+  ! TO              [ reduce using rule 7 (expression -> unary_expression .) ]
+
+    unary_expression               shift and go to state 16
+
+state 3
+
+    (4) unary_expression -> PLUS . unary_expression
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+    unary_expression               shift and go to state 17
+
+state 4
+
+    (5) unary_expression -> MINUS . unary_expression
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+    unary_expression               shift and go to state 18
+
+state 5
+
+    (6) unary_expression -> NOT . unary_expression
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+    unary_expression               shift and go to state 19
+
+state 6
+
+    (8) unary_expression -> LPAREN . expression RPAREN
+    (1) expression -> . expression OR_OP expression
+    (2) expression -> . expression AND_OP expression
+    (3) expression -> . expression expression
+    (7) expression -> . unary_expression
+    (13) expression -> . expression BOOST
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+    expression                     shift and go to state 20
+    unary_expression               shift and go to state 2
+
+state 7
+
+    (9) unary_expression -> LBRACKET . phrase_or_term TO phrase_or_term RBRACKET
+    (19) phrase_or_term -> . TERM
+    (20) phrase_or_term -> . PHRASE
+
+    TERM            shift and go to state 22
+    PHRASE          shift and go to state 23
+
+    phrase_or_term                 shift and go to state 21
+
+state 8
+
+    (18) unary_expression -> TO .
+
+    PLUS            reduce using rule 18 (unary_expression -> TO .)
+    MINUS           reduce using rule 18 (unary_expression -> TO .)
+    NOT             reduce using rule 18 (unary_expression -> TO .)
+    LPAREN          reduce using rule 18 (unary_expression -> TO .)
+    LBRACKET        reduce using rule 18 (unary_expression -> TO .)
+    TERM            reduce using rule 18 (unary_expression -> TO .)
+    PHRASE          reduce using rule 18 (unary_expression -> TO .)
+    REGEX           reduce using rule 18 (unary_expression -> TO .)
+    TO              reduce using rule 18 (unary_expression -> TO .)
+    OR_OP           reduce using rule 18 (unary_expression -> TO .)
+    AND_OP          reduce using rule 18 (unary_expression -> TO .)
+    BOOST           reduce using rule 18 (unary_expression -> TO .)
+    $end            reduce using rule 18 (unary_expression -> TO .)
+    RPAREN          reduce using rule 18 (unary_expression -> TO .)
+
+
+state 9
+
+    (10) unary_expression -> TERM . COLUMN unary_expression
+    (14) unary_expression -> TERM .
+    (16) unary_expression -> TERM . APPROX
+
+    COLUMN          shift and go to state 24
+    PLUS            reduce using rule 14 (unary_expression -> TERM .)
+    MINUS           reduce using rule 14 (unary_expression -> TERM .)
+    NOT             reduce using rule 14 (unary_expression -> TERM .)
+    LPAREN          reduce using rule 14 (unary_expression -> TERM .)
+    LBRACKET        reduce using rule 14 (unary_expression -> TERM .)
+    TERM            reduce using rule 14 (unary_expression -> TERM .)
+    PHRASE          reduce using rule 14 (unary_expression -> TERM .)
+    REGEX           reduce using rule 14 (unary_expression -> TERM .)
+    TO              reduce using rule 14 (unary_expression -> TERM .)
+    OR_OP           reduce using rule 14 (unary_expression -> TERM .)
+    AND_OP          reduce using rule 14 (unary_expression -> TERM .)
+    BOOST           reduce using rule 14 (unary_expression -> TERM .)
+    $end            reduce using rule 14 (unary_expression -> TERM .)
+    RPAREN          reduce using rule 14 (unary_expression -> TERM .)
+    APPROX          shift and go to state 25
+
+
+state 10
+
+    (11) unary_expression -> PHRASE .
+    (12) unary_expression -> PHRASE . APPROX
+
+    PLUS            reduce using rule 11 (unary_expression -> PHRASE .)
+    MINUS           reduce using rule 11 (unary_expression -> PHRASE .)
+    NOT             reduce using rule 11 (unary_expression -> PHRASE .)
+    LPAREN          reduce using rule 11 (unary_expression -> PHRASE .)
+    LBRACKET        reduce using rule 11 (unary_expression -> PHRASE .)
+    TERM            reduce using rule 11 (unary_expression -> PHRASE .)
+    PHRASE          reduce using rule 11 (unary_expression -> PHRASE .)
+    REGEX           reduce using rule 11 (unary_expression -> PHRASE .)
+    TO              reduce using rule 11 (unary_expression -> PHRASE .)
+    OR_OP           reduce using rule 11 (unary_expression -> PHRASE .)
+    AND_OP          reduce using rule 11 (unary_expression -> PHRASE .)
+    BOOST           reduce using rule 11 (unary_expression -> PHRASE .)
+    $end            reduce using rule 11 (unary_expression -> PHRASE .)
+    RPAREN          reduce using rule 11 (unary_expression -> PHRASE .)
+    APPROX          shift and go to state 26
+
+
+state 11
+
+    (17) unary_expression -> REGEX .
+
+    PLUS            reduce using rule 17 (unary_expression -> REGEX .)
+    MINUS           reduce using rule 17 (unary_expression -> REGEX .)
+    NOT             reduce using rule 17 (unary_expression -> REGEX .)
+    LPAREN          reduce using rule 17 (unary_expression -> REGEX .)
+    LBRACKET        reduce using rule 17 (unary_expression -> REGEX .)
+    TERM            reduce using rule 17 (unary_expression -> REGEX .)
+    PHRASE          reduce using rule 17 (unary_expression -> REGEX .)
+    REGEX           reduce using rule 17 (unary_expression -> REGEX .)
+    TO              reduce using rule 17 (unary_expression -> REGEX .)
+    OR_OP           reduce using rule 17 (unary_expression -> REGEX .)
+    AND_OP          reduce using rule 17 (unary_expression -> REGEX .)
+    BOOST           reduce using rule 17 (unary_expression -> REGEX .)
+    $end            reduce using rule 17 (unary_expression -> REGEX .)
+    RPAREN          reduce using rule 17 (unary_expression -> REGEX .)
+
+
+state 12
+
+    (3) expression -> expression expression .
+    (1) expression -> expression . OR_OP expression
+    (2) expression -> expression . AND_OP expression
+    (3) expression -> expression . expression
+    (13) expression -> expression . BOOST
+    (1) expression -> . expression OR_OP expression
+    (2) expression -> . expression AND_OP expression
+    (3) expression -> . expression expression
+    (7) expression -> . unary_expression
+    (13) expression -> . expression BOOST
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+  ! shift/reduce conflict for OR_OP resolved as shift
+  ! shift/reduce conflict for AND_OP resolved as shift
+  ! shift/reduce conflict for BOOST resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for LBRACKET resolved as shift
+  ! shift/reduce conflict for TERM resolved as shift
+  ! shift/reduce conflict for PHRASE resolved as shift
+  ! shift/reduce conflict for REGEX resolved as shift
+  ! shift/reduce conflict for TO resolved as shift
+    $end            reduce using rule 3 (expression -> expression expression .)
+    RPAREN          reduce using rule 3 (expression -> expression expression .)
+    OR_OP           shift and go to state 13
+    AND_OP          shift and go to state 14
+    BOOST           shift and go to state 15
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+  ! OR_OP           [ reduce using rule 3 (expression -> expression expression .) ]
+  ! AND_OP          [ reduce using rule 3 (expression -> expression expression .) ]
+  ! BOOST           [ reduce using rule 3 (expression -> expression expression .) ]
+  ! PLUS            [ reduce using rule 3 (expression -> expression expression .) ]
+  ! MINUS           [ reduce using rule 3 (expression -> expression expression .) ]
+  ! NOT             [ reduce using rule 3 (expression -> expression expression .) ]
+  ! LPAREN          [ reduce using rule 3 (expression -> expression expression .) ]
+  ! LBRACKET        [ reduce using rule 3 (expression -> expression expression .) ]
+  ! TERM            [ reduce using rule 3 (expression -> expression expression .) ]
+  ! PHRASE          [ reduce using rule 3 (expression -> expression expression .) ]
+  ! REGEX           [ reduce using rule 3 (expression -> expression expression .) ]
+  ! TO              [ reduce using rule 3 (expression -> expression expression .) ]
+
+    expression                     shift and go to state 12
+    unary_expression               shift and go to state 2
+
+state 13
+
+    (1) expression -> expression OR_OP . expression
+    (1) expression -> . expression OR_OP expression
+    (2) expression -> . expression AND_OP expression
+    (3) expression -> . expression expression
+    (7) expression -> . unary_expression
+    (13) expression -> . expression BOOST
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+    expression                     shift and go to state 27
+    unary_expression               shift and go to state 2
+
+state 14
+
+    (2) expression -> expression AND_OP . expression
+    (1) expression -> . expression OR_OP expression
+    (2) expression -> . expression AND_OP expression
+    (3) expression -> . expression expression
+    (7) expression -> . unary_expression
+    (13) expression -> . expression BOOST
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+    expression                     shift and go to state 28
+    unary_expression               shift and go to state 2
+
+state 15
+
+    (13) expression -> expression BOOST .
+
+    OR_OP           reduce using rule 13 (expression -> expression BOOST .)
+    AND_OP          reduce using rule 13 (expression -> expression BOOST .)
+    BOOST           reduce using rule 13 (expression -> expression BOOST .)
+    PLUS            reduce using rule 13 (expression -> expression BOOST .)
+    MINUS           reduce using rule 13 (expression -> expression BOOST .)
+    NOT             reduce using rule 13 (expression -> expression BOOST .)
+    LPAREN          reduce using rule 13 (expression -> expression BOOST .)
+    LBRACKET        reduce using rule 13 (expression -> expression BOOST .)
+    TERM            reduce using rule 13 (expression -> expression BOOST .)
+    PHRASE          reduce using rule 13 (expression -> expression BOOST .)
+    REGEX           reduce using rule 13 (expression -> expression BOOST .)
+    TO              reduce using rule 13 (expression -> expression BOOST .)
+    $end            reduce using rule 13 (expression -> expression BOOST .)
+    RPAREN          reduce using rule 13 (expression -> expression BOOST .)
+
+
+state 16
+
+    (15) unary_expression -> unary_expression unary_expression .
+    (15) unary_expression -> unary_expression . unary_expression
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for LBRACKET resolved as shift
+  ! shift/reduce conflict for TERM resolved as shift
+  ! shift/reduce conflict for PHRASE resolved as shift
+  ! shift/reduce conflict for REGEX resolved as shift
+  ! shift/reduce conflict for TO resolved as shift
+    OR_OP           reduce using rule 15 (unary_expression -> unary_expression unary_expression .)
+    AND_OP          reduce using rule 15 (unary_expression -> unary_expression unary_expression .)
+    BOOST           reduce using rule 15 (unary_expression -> unary_expression unary_expression .)
+    $end            reduce using rule 15 (unary_expression -> unary_expression unary_expression .)
+    RPAREN          reduce using rule 15 (unary_expression -> unary_expression unary_expression .)
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+  ! PLUS            [ reduce using rule 15 (unary_expression -> unary_expression unary_expression .) ]
+  ! MINUS           [ reduce using rule 15 (unary_expression -> unary_expression unary_expression .) ]
+  ! NOT             [ reduce using rule 15 (unary_expression -> unary_expression unary_expression .) ]
+  ! LPAREN          [ reduce using rule 15 (unary_expression -> unary_expression unary_expression .) ]
+  ! LBRACKET        [ reduce using rule 15 (unary_expression -> unary_expression unary_expression .) ]
+  ! TERM            [ reduce using rule 15 (unary_expression -> unary_expression unary_expression .) ]
+  ! PHRASE          [ reduce using rule 15 (unary_expression -> unary_expression unary_expression .) ]
+  ! REGEX           [ reduce using rule 15 (unary_expression -> unary_expression unary_expression .) ]
+  ! TO              [ reduce using rule 15 (unary_expression -> unary_expression unary_expression .) ]
+
+    unary_expression               shift and go to state 16
+
+state 17
+
+    (4) unary_expression -> PLUS unary_expression .
+    (15) unary_expression -> unary_expression . unary_expression
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    PLUS            reduce using rule 4 (unary_expression -> PLUS unary_expression .)
+    MINUS           reduce using rule 4 (unary_expression -> PLUS unary_expression .)
+    NOT             reduce using rule 4 (unary_expression -> PLUS unary_expression .)
+    OR_OP           reduce using rule 4 (unary_expression -> PLUS unary_expression .)
+    AND_OP          reduce using rule 4 (unary_expression -> PLUS unary_expression .)
+    BOOST           reduce using rule 4 (unary_expression -> PLUS unary_expression .)
+    $end            reduce using rule 4 (unary_expression -> PLUS unary_expression .)
+    RPAREN          reduce using rule 4 (unary_expression -> PLUS unary_expression .)
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+  ! LPAREN          [ reduce using rule 4 (unary_expression -> PLUS unary_expression .) ]
+  ! LBRACKET        [ reduce using rule 4 (unary_expression -> PLUS unary_expression .) ]
+  ! TERM            [ reduce using rule 4 (unary_expression -> PLUS unary_expression .) ]
+  ! PHRASE          [ reduce using rule 4 (unary_expression -> PLUS unary_expression .) ]
+  ! REGEX           [ reduce using rule 4 (unary_expression -> PLUS unary_expression .) ]
+  ! TO              [ reduce using rule 4 (unary_expression -> PLUS unary_expression .) ]
+  ! PLUS            [ shift and go to state 3 ]
+  ! MINUS           [ shift and go to state 4 ]
+  ! NOT             [ shift and go to state 5 ]
+
+    unary_expression               shift and go to state 16
+
+state 18
+
+    (5) unary_expression -> MINUS unary_expression .
+    (15) unary_expression -> unary_expression . unary_expression
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    MINUS           reduce using rule 5 (unary_expression -> MINUS unary_expression .)
+    NOT             reduce using rule 5 (unary_expression -> MINUS unary_expression .)
+    OR_OP           reduce using rule 5 (unary_expression -> MINUS unary_expression .)
+    AND_OP          reduce using rule 5 (unary_expression -> MINUS unary_expression .)
+    BOOST           reduce using rule 5 (unary_expression -> MINUS unary_expression .)
+    $end            reduce using rule 5 (unary_expression -> MINUS unary_expression .)
+    RPAREN          reduce using rule 5 (unary_expression -> MINUS unary_expression .)
+    PLUS            shift and go to state 3
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+  ! PLUS            [ reduce using rule 5 (unary_expression -> MINUS unary_expression .) ]
+  ! LPAREN          [ reduce using rule 5 (unary_expression -> MINUS unary_expression .) ]
+  ! LBRACKET        [ reduce using rule 5 (unary_expression -> MINUS unary_expression .) ]
+  ! TERM            [ reduce using rule 5 (unary_expression -> MINUS unary_expression .) ]
+  ! PHRASE          [ reduce using rule 5 (unary_expression -> MINUS unary_expression .) ]
+  ! REGEX           [ reduce using rule 5 (unary_expression -> MINUS unary_expression .) ]
+  ! TO              [ reduce using rule 5 (unary_expression -> MINUS unary_expression .) ]
+  ! MINUS           [ shift and go to state 4 ]
+  ! NOT             [ shift and go to state 5 ]
+
+    unary_expression               shift and go to state 16
+
+state 19
+
+    (6) unary_expression -> NOT unary_expression .
+    (15) unary_expression -> unary_expression . unary_expression
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for LBRACKET resolved as shift
+  ! shift/reduce conflict for TERM resolved as shift
+  ! shift/reduce conflict for PHRASE resolved as shift
+  ! shift/reduce conflict for REGEX resolved as shift
+  ! shift/reduce conflict for TO resolved as shift
+    OR_OP           reduce using rule 6 (unary_expression -> NOT unary_expression .)
+    AND_OP          reduce using rule 6 (unary_expression -> NOT unary_expression .)
+    BOOST           reduce using rule 6 (unary_expression -> NOT unary_expression .)
+    $end            reduce using rule 6 (unary_expression -> NOT unary_expression .)
+    RPAREN          reduce using rule 6 (unary_expression -> NOT unary_expression .)
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+  ! PLUS            [ reduce using rule 6 (unary_expression -> NOT unary_expression .) ]
+  ! MINUS           [ reduce using rule 6 (unary_expression -> NOT unary_expression .) ]
+  ! NOT             [ reduce using rule 6 (unary_expression -> NOT unary_expression .) ]
+  ! LPAREN          [ reduce using rule 6 (unary_expression -> NOT unary_expression .) ]
+  ! LBRACKET        [ reduce using rule 6 (unary_expression -> NOT unary_expression .) ]
+  ! TERM            [ reduce using rule 6 (unary_expression -> NOT unary_expression .) ]
+  ! PHRASE          [ reduce using rule 6 (unary_expression -> NOT unary_expression .) ]
+  ! REGEX           [ reduce using rule 6 (unary_expression -> NOT unary_expression .) ]
+  ! TO              [ reduce using rule 6 (unary_expression -> NOT unary_expression .) ]
+
+    unary_expression               shift and go to state 16
+
+state 20
+
+    (8) unary_expression -> LPAREN expression . RPAREN
+    (1) expression -> expression . OR_OP expression
+    (2) expression -> expression . AND_OP expression
+    (3) expression -> expression . expression
+    (13) expression -> expression . BOOST
+    (1) expression -> . expression OR_OP expression
+    (2) expression -> . expression AND_OP expression
+    (3) expression -> . expression expression
+    (7) expression -> . unary_expression
+    (13) expression -> . expression BOOST
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    RPAREN          shift and go to state 29
+    OR_OP           shift and go to state 13
+    AND_OP          shift and go to state 14
+    BOOST           shift and go to state 15
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+    expression                     shift and go to state 12
+    unary_expression               shift and go to state 2
+
+state 21
+
+    (9) unary_expression -> LBRACKET phrase_or_term . TO phrase_or_term RBRACKET
+
+    TO              shift and go to state 30
+
+
+state 22
+
+    (19) phrase_or_term -> TERM .
+
+    TO              reduce using rule 19 (phrase_or_term -> TERM .)
+    RBRACKET        reduce using rule 19 (phrase_or_term -> TERM .)
+
+
+state 23
+
+    (20) phrase_or_term -> PHRASE .
+
+    TO              reduce using rule 20 (phrase_or_term -> PHRASE .)
+    RBRACKET        reduce using rule 20 (phrase_or_term -> PHRASE .)
+
+
+state 24
+
+    (10) unary_expression -> TERM COLUMN . unary_expression
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+    unary_expression               shift and go to state 31
+
+state 25
+
+    (16) unary_expression -> TERM APPROX .
+
+    PLUS            reduce using rule 16 (unary_expression -> TERM APPROX .)
+    MINUS           reduce using rule 16 (unary_expression -> TERM APPROX .)
+    NOT             reduce using rule 16 (unary_expression -> TERM APPROX .)
+    LPAREN          reduce using rule 16 (unary_expression -> TERM APPROX .)
+    LBRACKET        reduce using rule 16 (unary_expression -> TERM APPROX .)
+    TERM            reduce using rule 16 (unary_expression -> TERM APPROX .)
+    PHRASE          reduce using rule 16 (unary_expression -> TERM APPROX .)
+    REGEX           reduce using rule 16 (unary_expression -> TERM APPROX .)
+    TO              reduce using rule 16 (unary_expression -> TERM APPROX .)
+    OR_OP           reduce using rule 16 (unary_expression -> TERM APPROX .)
+    AND_OP          reduce using rule 16 (unary_expression -> TERM APPROX .)
+    BOOST           reduce using rule 16 (unary_expression -> TERM APPROX .)
+    $end            reduce using rule 16 (unary_expression -> TERM APPROX .)
+    RPAREN          reduce using rule 16 (unary_expression -> TERM APPROX .)
+
+
+state 26
+
+    (12) unary_expression -> PHRASE APPROX .
+
+    PLUS            reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    MINUS           reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    NOT             reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    LPAREN          reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    LBRACKET        reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    TERM            reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    PHRASE          reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    REGEX           reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    TO              reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    OR_OP           reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    AND_OP          reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    BOOST           reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    $end            reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+    RPAREN          reduce using rule 12 (unary_expression -> PHRASE APPROX .)
+
+
+state 27
+
+    (1) expression -> expression OR_OP expression .
+    (1) expression -> expression . OR_OP expression
+    (2) expression -> expression . AND_OP expression
+    (3) expression -> expression . expression
+    (13) expression -> expression . BOOST
+    (1) expression -> . expression OR_OP expression
+    (2) expression -> . expression AND_OP expression
+    (3) expression -> . expression expression
+    (7) expression -> . unary_expression
+    (13) expression -> . expression BOOST
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    OR_OP           reduce using rule 1 (expression -> expression OR_OP expression .)
+    NOT             reduce using rule 1 (expression -> expression OR_OP expression .)
+    $end            reduce using rule 1 (expression -> expression OR_OP expression .)
+    RPAREN          reduce using rule 1 (expression -> expression OR_OP expression .)
+    AND_OP          shift and go to state 14
+    BOOST           shift and go to state 15
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+  ! AND_OP          [ reduce using rule 1 (expression -> expression OR_OP expression .) ]
+  ! BOOST           [ reduce using rule 1 (expression -> expression OR_OP expression .) ]
+  ! PLUS            [ reduce using rule 1 (expression -> expression OR_OP expression .) ]
+  ! MINUS           [ reduce using rule 1 (expression -> expression OR_OP expression .) ]
+  ! LPAREN          [ reduce using rule 1 (expression -> expression OR_OP expression .) ]
+  ! LBRACKET        [ reduce using rule 1 (expression -> expression OR_OP expression .) ]
+  ! TERM            [ reduce using rule 1 (expression -> expression OR_OP expression .) ]
+  ! PHRASE          [ reduce using rule 1 (expression -> expression OR_OP expression .) ]
+  ! REGEX           [ reduce using rule 1 (expression -> expression OR_OP expression .) ]
+  ! TO              [ reduce using rule 1 (expression -> expression OR_OP expression .) ]
+  ! OR_OP           [ shift and go to state 13 ]
+  ! NOT             [ shift and go to state 5 ]
+
+    expression                     shift and go to state 12
+    unary_expression               shift and go to state 2
+
+state 28
+
+    (2) expression -> expression AND_OP expression .
+    (1) expression -> expression . OR_OP expression
+    (2) expression -> expression . AND_OP expression
+    (3) expression -> expression . expression
+    (13) expression -> expression . BOOST
+    (1) expression -> . expression OR_OP expression
+    (2) expression -> . expression AND_OP expression
+    (3) expression -> . expression expression
+    (7) expression -> . unary_expression
+    (13) expression -> . expression BOOST
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+    OR_OP           reduce using rule 2 (expression -> expression AND_OP expression .)
+    AND_OP          reduce using rule 2 (expression -> expression AND_OP expression .)
+    NOT             reduce using rule 2 (expression -> expression AND_OP expression .)
+    $end            reduce using rule 2 (expression -> expression AND_OP expression .)
+    RPAREN          reduce using rule 2 (expression -> expression AND_OP expression .)
+    BOOST           shift and go to state 15
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+  ! BOOST           [ reduce using rule 2 (expression -> expression AND_OP expression .) ]
+  ! PLUS            [ reduce using rule 2 (expression -> expression AND_OP expression .) ]
+  ! MINUS           [ reduce using rule 2 (expression -> expression AND_OP expression .) ]
+  ! LPAREN          [ reduce using rule 2 (expression -> expression AND_OP expression .) ]
+  ! LBRACKET        [ reduce using rule 2 (expression -> expression AND_OP expression .) ]
+  ! TERM            [ reduce using rule 2 (expression -> expression AND_OP expression .) ]
+  ! PHRASE          [ reduce using rule 2 (expression -> expression AND_OP expression .) ]
+  ! REGEX           [ reduce using rule 2 (expression -> expression AND_OP expression .) ]
+  ! TO              [ reduce using rule 2 (expression -> expression AND_OP expression .) ]
+  ! OR_OP           [ shift and go to state 13 ]
+  ! AND_OP          [ shift and go to state 14 ]
+  ! NOT             [ shift and go to state 5 ]
+
+    expression                     shift and go to state 12
+    unary_expression               shift and go to state 2
+
+state 29
+
+    (8) unary_expression -> LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    NOT             reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    LPAREN          reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    LBRACKET        reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    TERM            reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    PHRASE          reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    REGEX           reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    TO              reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    OR_OP           reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    AND_OP          reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    BOOST           reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 8 (unary_expression -> LPAREN expression RPAREN .)
+
+
+state 30
+
+    (9) unary_expression -> LBRACKET phrase_or_term TO . phrase_or_term RBRACKET
+    (19) phrase_or_term -> . TERM
+    (20) phrase_or_term -> . PHRASE
+
+    TERM            shift and go to state 22
+    PHRASE          shift and go to state 23
+
+    phrase_or_term                 shift and go to state 32
+
+state 31
+
+    (10) unary_expression -> TERM COLUMN unary_expression .
+    (15) unary_expression -> unary_expression . unary_expression
+    (4) unary_expression -> . PLUS unary_expression
+    (5) unary_expression -> . MINUS unary_expression
+    (6) unary_expression -> . NOT unary_expression
+    (8) unary_expression -> . LPAREN expression RPAREN
+    (9) unary_expression -> . LBRACKET phrase_or_term TO phrase_or_term RBRACKET
+    (10) unary_expression -> . TERM COLUMN unary_expression
+    (11) unary_expression -> . PHRASE
+    (12) unary_expression -> . PHRASE APPROX
+    (14) unary_expression -> . TERM
+    (15) unary_expression -> . unary_expression unary_expression
+    (16) unary_expression -> . TERM APPROX
+    (17) unary_expression -> . REGEX
+    (18) unary_expression -> . TO
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for LBRACKET resolved as shift
+  ! shift/reduce conflict for TERM resolved as shift
+  ! shift/reduce conflict for PHRASE resolved as shift
+  ! shift/reduce conflict for REGEX resolved as shift
+  ! shift/reduce conflict for TO resolved as shift
+    OR_OP           reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .)
+    AND_OP          reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .)
+    BOOST           reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .)
+    $end            reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .)
+    RPAREN          reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .)
+    PLUS            shift and go to state 3
+    MINUS           shift and go to state 4
+    NOT             shift and go to state 5
+    LPAREN          shift and go to state 6
+    LBRACKET        shift and go to state 7
+    TERM            shift and go to state 9
+    PHRASE          shift and go to state 10
+    REGEX           shift and go to state 11
+    TO              shift and go to state 8
+
+  ! PLUS            [ reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .) ]
+  ! MINUS           [ reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .) ]
+  ! NOT             [ reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .) ]
+  ! LPAREN          [ reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .) ]
+  ! LBRACKET        [ reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .) ]
+  ! TERM            [ reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .) ]
+  ! PHRASE          [ reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .) ]
+  ! REGEX           [ reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .) ]
+  ! TO              [ reduce using rule 10 (unary_expression -> TERM COLUMN unary_expression .) ]
+
+    unary_expression               shift and go to state 16
+
+state 32
+
+    (9) unary_expression -> LBRACKET phrase_or_term TO phrase_or_term . RBRACKET
+
+    RBRACKET        shift and go to state 33
+
+
+state 33
+
+    (9) unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .
+
+    PLUS            reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    MINUS           reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    NOT             reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    LPAREN          reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    LBRACKET        reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    TERM            reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    PHRASE          reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    REGEX           reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    TO              reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    OR_OP           reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    AND_OP          reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    BOOST           reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    $end            reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+    RPAREN          reduce using rule 9 (unary_expression -> LBRACKET phrase_or_term TO phrase_or_term RBRACKET .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 2 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 2 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 2 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 2 resolved as shift
+WARNING: shift/reduce conflict for LBRACKET in state 2 resolved as shift
+WARNING: shift/reduce conflict for TERM in state 2 resolved as shift
+WARNING: shift/reduce conflict for PHRASE in state 2 resolved as shift
+WARNING: shift/reduce conflict for REGEX in state 2 resolved as shift
+WARNING: shift/reduce conflict for TO in state 2 resolved as shift
+WARNING: shift/reduce conflict for OR_OP in state 12 resolved as shift
+WARNING: shift/reduce conflict for AND_OP in state 12 resolved as shift
+WARNING: shift/reduce conflict for BOOST in state 12 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 12 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 12 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 12 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 12 resolved as shift
+WARNING: shift/reduce conflict for LBRACKET in state 12 resolved as shift
+WARNING: shift/reduce conflict for TERM in state 12 resolved as shift
+WARNING: shift/reduce conflict for PHRASE in state 12 resolved as shift
+WARNING: shift/reduce conflict for REGEX in state 12 resolved as shift
+WARNING: shift/reduce conflict for TO in state 12 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 16 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 16 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 16 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 16 resolved as shift
+WARNING: shift/reduce conflict for LBRACKET in state 16 resolved as shift
+WARNING: shift/reduce conflict for TERM in state 16 resolved as shift
+WARNING: shift/reduce conflict for PHRASE in state 16 resolved as shift
+WARNING: shift/reduce conflict for REGEX in state 16 resolved as shift
+WARNING: shift/reduce conflict for TO in state 16 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 19 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 19 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 19 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 19 resolved as shift
+WARNING: shift/reduce conflict for LBRACKET in state 19 resolved as shift
+WARNING: shift/reduce conflict for TERM in state 19 resolved as shift
+WARNING: shift/reduce conflict for PHRASE in state 19 resolved as shift
+WARNING: shift/reduce conflict for REGEX in state 19 resolved as shift
+WARNING: shift/reduce conflict for TO in state 19 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 31 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 31 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 31 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 31 resolved as shift
+WARNING: shift/reduce conflict for LBRACKET in state 31 resolved as shift
+WARNING: shift/reduce conflict for TERM in state 31 resolved as shift
+WARNING: shift/reduce conflict for PHRASE in state 31 resolved as shift
+WARNING: shift/reduce conflict for REGEX in state 31 resolved as shift
+WARNING: shift/reduce conflict for TO in state 31 resolved as shift
