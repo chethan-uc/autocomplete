@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import request, render_template
 import requests
-
+from query_parser.exceptions import ParseSyntaxError
 app = Flask(__name__)
 
 
@@ -15,9 +15,9 @@ def pipe():
     data = request.form.get("data")
     payload = {}
     headers = {}
-    url = "http://127.0.0.1:4000/autocomplete?query=" + str(data)
-    response = requests.request("GET", url, headers=headers, data=payload)
-    return response.json()
+    # url = "http://127.0.0.1:4000/autocomplete?query=" + str(data)
+    # response = requests.request("GET", url, headers=headers, data=payload)
+    return {}
 
 
 @app.route('/json', methods=["GET", "POST"])
@@ -32,39 +32,31 @@ def json():
     message_es_builder = ElasticsearchQueryBuilder(**schema_analizer.query_builder_options())
 
     data = request.form.get("data")
-    tree = parser.parse(data)
-    query = message_es_builder(tree)
-    payload = {
-      "_source": {
-        "includes": [
-            "case_name",
-            "case_id",
-            "case_number",
-            "filing_date",
-            "inner_hits",
-            "highlight",
-            "last_fetch_date_with_updates"
-        ]
-      },
-      "size": 10,
-      "track_total_hits": True,
-      "query": query,
-      "highlight": {
-        "pre_tags": ["<b>"],
-        "post_tags": ["</b>"],
-        "fields": {
-            "docket.text": {},
-            "case_name": {}
-        }
-      },
+    try:
+        tree = parser.parse(data)
+        query = message_es_builder(tree)
+        payload = {
+          "_source": {
+          },
+          "size": 10,
+          "track_total_hits": True,
+          "query": query,
+          "highlight": {
+            "require_field_match": False,
+            "fields": {
+              "*": {}
+            }
+          },
         "sort": {
-            "filing_date": "desc"
+            "filedDate": "desc"
         }
-    }
+        }
+    except ParseSyntaxError as e:
+        payload = {"error": f"{e}"}
 
-    response = requests.get(url="http://10.83.94.249:9200/all_courtcases/_search", data=json.dumps(payload),
-                            headers={'Content-Type': 'application/json'})
-    return get_response(response.json())
+    # response = requests.get(url="http://10.83.94.249:9200/all_courtcases/_search", data=json.dumps(payload),
+    #                         headers={'Content-Type': 'application/json'})
+    return payload
 
 
 def get_response(data):

@@ -295,20 +295,14 @@ class ENested(AbstractEOperation):
     def json(self):
         from random import randint
         highlight_fields = {}
-        if self.nested_path == "party":
-            highlight_fields = {"party.name": {}, "party.party_type.name": {}, "party.representation.name": {}}
-        elif self.nested_path == "attorney":
-            highlight_fields = {"attorney.name": {}, "attorney.attorney_type.name": {}}
-        elif self.nested_path == "judge":
-            highlight_fields = {"judge.name": {}, "judge.judge_type.name": {}}
-        elif self.nested_path == "docket":
-            highlight_fields = {"docket.text": {}}
         inner_hits = {
-            "name": str(randint(0, 100)),
+            # "name": str(randint(0, 100)),
             "highlight": {
                 "pre_tags": ["<b>"],
                 "post_tags": ["</b>"],
-                "fields": highlight_fields
+                "fields": {
+                  "*": {}
+                }
             }
         }
         return {'nested': {'path': self.nested_path, 'query': self.items.json, "inner_hits": inner_hits}}

@@ -93,24 +93,7 @@
     "mappings": {
       "dynamic": "strict",
       "properties": {
-        "source_id": {
-          "coerce": true,
-          "index": true,
-          "ignore_malformed": false,
-          "store": false,
-          "type": "byte",
-          "doc_values": true
-        },
-        "pacer_case_id": {
-          "eager_global_ordinals": false,
-          "norms": false,
-          "index": true,
-          "store": false,
-          "type": "keyword",
-          "split_queries_on_whitespace": false,
-          "doc_values": false
-        },
-        "case_id": {
+        "caseId": {
           "eager_global_ordinals": false,
           "norms": false,
           "index": true,
@@ -120,17 +103,7 @@
           "index_options": "docs",
           "doc_values": true
         },
-        "codaxtr_instance_index_info_id": {
-          "eager_global_ordinals": false,
-          "norms": false,
-          "index": true,
-          "store": false,
-          "type": "keyword",
-          "split_queries_on_whitespace": false,
-          "index_options": "docs",
-          "doc_values": true
-        },
-        "case_number": {
+        "caseNumber": {
           "eager_global_ordinals": false,
           "normalizer": "custom_case_num",
           "norms": false,
@@ -141,7 +114,7 @@
           "index_options": "docs",
           "doc_values": true
         },
-        "case_name": {
+        "caseName": {
           "eager_global_ordinals": false,
           "index_phrases": false,
           "fielddata": false,
@@ -152,15 +125,7 @@
           "type": "text",
           "index_options": "positions"
         },
-        "filing_year": {
-          "format": "yyyy",
-          "index": true,
-          "ignore_malformed": false,
-          "store": false,
-          "type": "date",
-          "doc_values": true
-        },
-        "filing_date": {
+        "filedDate": {
           "format": "yyyy-MM-dd ||yyyy-MM||yyyy",
           "index": true,
           "ignore_malformed": false,
@@ -168,7 +133,7 @@
           "type": "date",
           "doc_values": true
         },
-        "first_fetch_date": {
+        "firstFetchDate": {
           "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||yyyy-MM||yyyy",
           "index": true,
           "ignore_malformed": false,
@@ -176,7 +141,7 @@
           "type": "date",
           "doc_values": true
         },
-        "last_fetch_date_with_updates": {
+        "lastFetchDate": {
           "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||yyyy-MM||yyyy",
           "index": true,
           "ignore_malformed": false,
@@ -184,20 +149,73 @@
           "type": "date",
           "doc_values": true
         },
-        "jurisdiction_name": {
-          "eager_global_ordinals": false,
-          "index_phrases": false,
-          "fielddata": false,
-          "norms": true,
+        "lastFetchDateWithUpdates": {
+          "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||yyyy-MM||yyyy",
           "index": true,
+          "ignore_malformed": false,
           "store": false,
-          "type": "text",
-          "index_options": "positions",
-          "analyzer": "entity_name"
+          "type": "date",
+          "doc_values": true
         },
-        "jurisdiction": {
+        "Court": {
           "type": "object",
           "properties": {
+            "courtId": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
+            },
+            "courtCode": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions",
+              "analyzer": "entity_name",
+              "copy_to": "allCourt"
+            },
+            "courtStructureId": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
+            },
+            "type": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions",
+              "analyzer": "entity_name",
+              "copy_to": "allCourt"
+            },
+            "system": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions",
+              "analyzer": "entity_name",
+              "copy_to": "allCourt"
+            },
             "name": {
               "eager_global_ordinals": false,
               "index_phrases": false,
@@ -207,38 +225,10 @@
               "store": false,
               "type": "text",
               "index_options": "positions",
-              "copy_to": "jurisdiction_name",
-              "analyzer": "entity_name"
+              "analyzer": "entity_name",
+              "copy_to": "allCourt"
             },
-            "id": {
-              "eager_global_ordinals": false,
-              "norms": false,
-              "index": true,
-              "store": false,
-              "type": "keyword",
-              "split_queries_on_whitespace": false,
-              "index_options": "docs",
-              "doc_values": true
-            }
-          }
-        },
-        "case_type_name": {
-          "eager_global_ordinals": false,
-          "index_phrases": false,
-          "fielddata": false,
-          "norms": true,
-          "index": true,
-          "store": false,
-          "type": "text",
-          "index_options": "positions",
-          "analyzer": "entity_name"
-        },
-        "case_type": {
-          "dynamic": true,
-          "type": "object",
-          "enabled": true,
-          "properties": {
-            "name": {
+            "nameAka": {
               "eager_global_ordinals": false,
               "index_phrases": false,
               "fielddata": false,
@@ -247,31 +237,21 @@
               "store": false,
               "type": "text",
               "index_options": "positions",
-              "copy_to": "case_type_name",
-              "analyzer": "entity_name"
+              "analyzer": "entity_name",
+              "copy_to": "allCourt"
+
             },
-            "id": {
-              "type": "keyword"
-            }
-          }
-        },
-        "case_status_name": {
-          "eager_global_ordinals": false,
-          "index_phrases": false,
-          "fielddata": false,
-          "norms": true,
-          "index": true,
-          "store": false,
-          "type": "text",
-          "index_options": "positions",
-          "analyzer": "entity_name"
-        },
-        "case_status": {
-          "dynamic": true,
-          "type": "object",
-          "enabled": true,
-          "properties": {
-            "name": {
+            "courthouseId": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
+            },
+            "courthouse": {
               "eager_global_ordinals": false,
               "index_phrases": false,
               "fielddata": false,
@@ -280,104 +260,66 @@
               "store": false,
               "type": "text",
               "index_options": "positions",
-              "copy_to": "case_status_name",
-              "analyzer": "entity_name"
+              "analyzer": "entity_name",
+              "copy_to": "allCourt"
             },
-            "id": {
-              "eager_global_ordinals": false,
-              "norms": false,
-              "index": true,
-              "store": false,
-              "type": "keyword",
-              "split_queries_on_whitespace": false,
-              "index_options": "docs",
-              "doc_values": true
-            }
-          }
-        },
-        "docket_tag": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "eager_global_ordinals": false,
-              "index_phrases": false,
-              "fielddata": false,
-              "norms": true,
-              "index": true,
-              "store": false,
-              "type": "text",
-              "index_options": "positions"
-            },
-            "id": {
-              "eager_global_ordinals": false,
-              "norms": false,
-              "index": true,
-              "store": false,
-              "type": "keyword",
-              "split_queries_on_whitespace": false,
-              "index_options": "docs",
-              "doc_values": true
-            }
-          }
-        },
-        "is_suppressed": {
-          "index": true,
-          "store": false,
-          "type": "boolean",
-          "doc_values": true
-        },
-        "dollar_amount": {
-          "coerce": true,
-          "index": true,
-          "ignore_malformed": false,
-          "store": false,
-          "type": "long",
-          "doc_values": true
-        },
-        "last_fetch_date": {
-          "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||yyyy-MM||yyyy",
-          "index": true,
-          "ignore_malformed": false,
-          "store": false,
-          "type": "date",
-          "doc_values": true
-        },
-        "party_fullname": {
-          "eager_global_ordinals": false,
-          "index_phrases": false,
-          "fielddata": false,
-          "norms": true,
-          "analyzer": "entity_name",
-          "index": true,
-          "store": false,
-          "type": "text",
-          "index_options": "positions"
-        },
-        "party": {
-          "type": "nested",
-          "properties": {
-            "party_id": {
-              "coerce": true,
-              "index": true,
-              "ignore_malformed": false,
-              "store": false,
-              "type": "integer",
-              "doc_values": true
-            },
-            "party_type": {
+            "additionalLevels" : {
               "type": "object",
               "properties": {
-                "name": {
-                  "eager_global_ordinals": false,
-                  "index_phrases": false,
-                  "fielddata": false,
-                  "norms": true,
-                  "index": true,
-                  "store": false,
-                  "type": "text",
-                  "index_options": "positions"
-                },
-                "id": {
+                "level1": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions",
+                    "analyzer": "entity_name",
+                    "copy_to": "allCourt"
+                  },
+                "level2": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions",
+                    "analyzer": "entity_name",
+                    "copy_to": "allCourt"
+                  },
+                "level3": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions",
+                    "analyzer": "entity_name",
+                    "copy_to": "allCourt"
+                  },
+                "level4": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions",
+                    "analyzer": "entity_name",
+                    "copy_to": "allCourt"
+                  }
+              }
+            },
+            "jurisdictionGeo": {
+              "type": "object",
+              "properties": {
+                "jurisdictionGeoId": {
                   "eager_global_ordinals": false,
                   "norms": false,
                   "index": true,
@@ -386,8 +328,249 @@
                   "split_queries_on_whitespace": false,
                   "index_options": "docs",
                   "doc_values": true
+                },
+                "country": {
+                  "eager_global_ordinals": false,
+                  "index_phrases": false,
+                  "fielddata": false,
+                  "norms": true,
+                  "index": true,
+                  "store": false,
+                  "type": "text",
+                  "index_options": "positions",
+                  "analyzer": "entity_name",
+                  "copy_to": "allCourt"
+                },
+                "state": {
+                  "eager_global_ordinals": false,
+                  "index_phrases": false,
+                  "fielddata": false,
+                  "norms": true,
+                  "index": true,
+                  "store": false,
+                  "type": "text",
+                  "index_options": "positions",
+                  "analyzer": "entity_name",
+                  "copy_to": "allCourt"
+                },
+                "county": {
+                  "eager_global_ordinals": false,
+                  "index_phrases": false,
+                  "fielddata": false,
+                  "norms": true,
+                  "index": true,
+                  "store": false,
+                  "type": "text",
+                  "index_options": "positions",
+                  "analyzer": "entity_name",
+                  "copy_to": "allCourt"
+                },
+                "city": {
+                  "eager_global_ordinals": false,
+                  "index_phrases": false,
+                  "fielddata": false,
+                  "norms": true,
+                  "index": true,
+                  "store": false,
+                  "type": "text",
+                  "index_options": "positions",
+                  "analyzer": "entity_name",
+                  "copy_to": "allCourt"
+                },
+                "fipsCode": {
+                  "eager_global_ordinals": false,
+                  "norms": false,
+                  "index": true,
+                  "store": false,
+                  "type": "keyword",
+                  "split_queries_on_whitespace": false,
+                  "index_options": "docs",
+                  "doc_values": true
+                },
+                "zipCodeArray": {
+                  "eager_global_ordinals": false,
+                  "norms": false,
+                  "index": true,
+                  "store": false,
+                  "type": "keyword",
+                  "split_queries_on_whitespace": false,
+                  "index_options": "docs",
+                  "doc_values": true
+                  }
                 }
               }
+            }
+          },
+        "CaseType": {
+          "type": "object",
+          "properties": {
+            "caseTypeId": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
+            },
+            "name": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions",
+              "analyzer": "entity_name",
+              "copy_to": "allCaseType"
+            },
+            "groupId": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
+            },
+            "group": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions",
+              "analyzer": "entity_name",
+              "copy_to": "allCaseType"
+            },
+            "subGroupId": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
+            },
+            "subGroup": {
+            "eager_global_ordinals": false,
+            "index_phrases": false,
+            "fielddata": false,
+            "norms": true,
+            "index": true,
+            "store": false,
+            "type": "text",
+            "index_options": "positions",
+            "analyzer": "entity_name",
+            "copy_to": "allCaseType"
+          }
+          }
+        },
+        "CaseStatus": {
+          "type": "object",
+          "properties": {
+            "caseStatusId": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
+            },
+            "name": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions",
+              "analyzer": "entity_name",
+              "copy_to": "allCaseStatus"
+            },
+            "groupId": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
+            },
+            "group": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions",
+              "analyzer": "entity_name",
+              "copy_to": "allCaseStatus"
+            }
+          }
+        },
+        "sourceCaseData": {
+          "type": "object",
+          "properties": {
+            "sourceCourthouse": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions",
+              "analyzer": "entity_name"
+            },
+            "sourceCaseType": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions",
+              "analyzer": "entity_name"
+            },
+            "sourceCaseStatus": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions",
+              "analyzer": "entity_name"
+            }
+          }
+        },
+        "Party": {
+          "type": "nested",
+          "properties": {
+            "partyId": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
             },
             "name": {
               "eager_global_ordinals": false,
@@ -398,30 +581,26 @@
               "index": true,
               "store": false,
               "type": "text",
-              "index_options": "positions",
-              "copy_to": "party_fullname"
+              "index_options": "positions"
             },
-            "has_phone": {
+            "partyClassificationType": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "analyzer": "entity_name",
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions"
+            },
+            "isVisible": {
               "index": true,
               "store": false,
               "type": "boolean",
               "doc_values": true
             },
-            "entity_type_id": {
-              "coerce": true,
-              "index": true,
-              "ignore_malformed": false,
-              "store": false,
-              "type": "byte",
-              "doc_values": true
-            },
-            "has_email": {
-              "index": true,
-              "store": false,
-              "type": "boolean",
-              "doc_values": true
-            },
-            "representation": {
+            "Role": {
               "type": "object",
               "properties": {
                 "name": {
@@ -434,7 +613,27 @@
                   "type": "text",
                   "index_options": "positions"
                 },
-                "id": {
+                "roleId": {
+                  "eager_global_ordinals": false,
+                  "norms": false,
+                  "index": true,
+                  "store": false,
+                  "type": "keyword",
+                  "split_queries_on_whitespace": false,
+                  "index_options": "docs",
+                  "doc_values": true
+                },
+                "group": {
+                  "eager_global_ordinals": false,
+                  "index_phrases": false,
+                  "fielddata": false,
+                  "norms": true,
+                  "index": true,
+                  "store": false,
+                  "type": "text",
+                  "index_options": "positions"
+                },
+                "groupId": {
                   "eager_global_ordinals": false,
                   "norms": false,
                   "index": true,
@@ -446,13 +645,120 @@
                 }
               }
             },
-            "has_address": {
-              "index": true,
-              "store": false,
-              "type": "boolean",
-              "doc_values": true
+            "AttorneyRepresentationType": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "eager_global_ordinals": false,
+                  "index_phrases": false,
+                  "fielddata": false,
+                  "norms": true,
+                  "index": true,
+                  "store": false,
+                  "type": "text",
+                  "index_options": "positions"
+                },
+                "attorneyRepresentationTypeId": {
+                  "eager_global_ordinals": false,
+                  "norms": false,
+                  "index": true,
+                  "store": false,
+                  "type": "keyword",
+                  "split_queries_on_whitespace": false,
+                  "index_options": "docs",
+                  "doc_values": true
+                }
+              }
             },
-            "norm_id": {
+            "NormalisedPartyMeta": {
+              "type": "object",
+              "properties": {
+                "normPartyId": {
+                  "eager_global_ordinals": false,
+                  "norms": false,
+                  "index": true,
+                  "store": false,
+                  "type": "keyword",
+                  "split_queries_on_whitespace": false,
+                  "index_options": "docs",
+                  "doc_values": true
+                }
+              }
+            },
+            "Contact": {
+            "type": "object",
+            "properties": {
+              "Email": {
+                "type": "object",
+                "properties": {
+                  "emailId": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions"
+                  },
+                  "isVisible": {
+                    "index": true,
+                    "store": false,
+                    "type": "boolean",
+                    "doc_values": true
+                  }
+                }
+              },
+              "Address": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions"
+                  },
+                  "stateName": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions"
+                  },
+                  "zip": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions"
+                  },
+                  "isVisible": {
+                    "index": true,
+                    "store": false,
+                    "type": "boolean",
+                    "doc_values": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+        "Attorney": {
+          "dynamic": true,
+          "type": "nested",
+          "properties": {
+            "attorneyId": {
               "eager_global_ordinals": false,
               "norms": false,
               "index": true,
@@ -461,36 +767,199 @@
               "split_queries_on_whitespace": false,
               "index_options": "docs",
               "doc_values": true
-            }
-          }
-        },
-        "attorney_fullname": {
-          "eager_global_ordinals": false,
-          "index_phrases": false,
-          "fielddata": false,
-          "norms": true,
-          "analyzer": "entity_name",
-          "index": true,
-          "store": false,
-          "type": "text",
-          "index_options": "positions"
-        },
-        "attorney": {
-          "dynamic": true,
-          "type": "nested",
-          "properties": {
+            },
+            "name": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
+              "analyzer": "entity_name",
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions"
+            },
+            "isVisible": {
+              "index": true,
+              "store": false,
+              "type": "boolean",
+              "doc_values": true
+            },
+            "Role": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "eager_global_ordinals": false,
+                  "index_phrases": false,
+                  "fielddata": false,
+                  "norms": true,
+                  "index": true,
+                  "store": false,
+                  "type": "text",
+                  "index_options": "positions"
+                },
+                "roleId": {
+                  "eager_global_ordinals": false,
+                  "norms": false,
+                  "index": true,
+                  "store": false,
+                  "type": "keyword",
+                  "split_queries_on_whitespace": false,
+                  "index_options": "docs",
+                  "doc_values": true
+                }
+              }
+            },
             "firm": {
               "eager_global_ordinals": false,
               "index_phrases": false,
               "fielddata": false,
               "norms": true,
+              "index": true,
+              "store": false,
+              "type": "text",
+              "index_options": "positions"
+            },
+            "barNumber": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
+            },
+            "NormalisedAttorneyMeta": {
+              "type": "object",
+              "properties": {
+                "normAttorneyId": {
+                  "eager_global_ordinals": false,
+                  "norms": false,
+                  "index": true,
+                  "store": false,
+                  "type": "keyword",
+                  "split_queries_on_whitespace": false,
+                  "index_options": "docs",
+                  "doc_values": true
+                },
+                "NormalisedLawFirmMeta": {
+                  "type": "object",
+                  "properties": {
+                    "normLawFirmId": {
+                      "eager_global_ordinals": false,
+                      "norms": false,
+                      "index": true,
+                      "store": false,
+                      "type": "keyword",
+                      "split_queries_on_whitespace": false,
+                      "index_options": "docs",
+                      "doc_values": true
+                    }
+                  }
+                }
+              }
+            },
+            "Contact": {
+              "type": "object",
+              "properties": {
+                "Email": {
+                  "type": "object",
+                  "properties": {
+                    "emailId": {
+                      "eager_global_ordinals": false,
+                      "index_phrases": false,
+                      "fielddata": false,
+                      "norms": true,
+                      "index": true,
+                      "store": false,
+                      "type": "text",
+                      "index_options": "positions"
+                    },
+                    "isVisible": {
+                      "index": true,
+                      "store": false,
+                      "type": "boolean",
+                      "doc_values": true
+                    }
+                  }
+                },
+                "Address": {
+                  "type": "object",
+                  "properties": {
+                    "city": {
+                      "eager_global_ordinals": false,
+                      "index_phrases": false,
+                      "fielddata": false,
+                      "norms": true,
+                      "index": true,
+                      "store": false,
+                      "type": "text",
+                      "index_options": "positions"
+                    },
+                    "stateName": {
+                      "eager_global_ordinals": false,
+                      "index_phrases": false,
+                      "fielddata": false,
+                      "norms": true,
+                      "index": true,
+                      "store": false,
+                      "type": "text",
+                      "index_options": "positions"
+                    },
+                    "zip": {
+                      "eager_global_ordinals": false,
+                      "index_phrases": false,
+                      "fielddata": false,
+                      "norms": true,
+                      "index": true,
+                      "store": false,
+                      "type": "text",
+                      "index_options": "positions"
+                    },
+                    "isVisible": {
+                      "index": true,
+                      "store": false,
+                      "type": "boolean",
+                      "doc_values": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Judge": {
+          "type": "nested",
+          "properties": {
+            "judgeId": {
+              "eager_global_ordinals": false,
+              "norms": false,
+              "index": true,
+              "store": false,
+              "type": "keyword",
+              "split_queries_on_whitespace": false,
+              "index_options": "docs",
+              "doc_values": true
+            },
+            "name": {
+              "eager_global_ordinals": false,
+              "index_phrases": false,
+              "fielddata": false,
+              "norms": true,
               "analyzer": "entity_name",
               "index": true,
               "store": false,
               "type": "text",
               "index_options": "positions"
             },
-            "attorney_type": {
+            "isVisible": {
+              "index": true,
+              "store": false,
+              "type": "boolean",
+              "doc_values": true
+            },
+            "Role": {
               "type": "object",
               "properties": {
                 "name": {
@@ -503,7 +972,7 @@
                   "type": "text",
                   "index_options": "positions"
                 },
-                "id": {
+                "roleId": {
                   "eager_global_ordinals": false,
                   "norms": false,
                   "index": true,
@@ -515,92 +984,10 @@
                 }
               }
             },
-            "norm_law_firm_id": {
-              "eager_global_ordinals": false,
-              "norms": false,
-              "index": true,
-              "store": false,
-              "type": "keyword",
-              "split_queries_on_whitespace": false,
-              "index_options": "docs",
-              "doc_values": true
-            },
-            "name": {
-              "eager_global_ordinals": false,
-              "index_phrases": false,
-              "fielddata": false,
-              "norms": true,
-              "analyzer": "entity_name",
-              "index": true,
-              "store": false,
-              "type": "text",
-              "index_options": "positions",
-              "copy_to": "attorney_fullname"
-            },
-            "has_phone": {
-              "index": true,
-              "store": false,
-              "type": "boolean",
-              "doc_values": true
-            },
-            "has_email": {
-              "index": true,
-              "store": false,
-              "type": "boolean",
-              "doc_values": true
-            },
-            "has_firm": {
-              "index": true,
-              "store": false,
-              "type": "boolean",
-              "doc_values": true
-            },
-            "has_address": {
-              "index": true,
-              "store": false,
-              "type": "boolean",
-              "doc_values": true
-            },
-            "norm_id": {
-              "eager_global_ordinals": false,
-              "norms": false,
-              "index": true,
-              "store": false,
-              "type": "keyword",
-              "split_queries_on_whitespace": false,
-              "index_options": "docs",
-              "doc_values": true
-            }
-          }
-        },
-        "judge_fullname": {
-          "eager_global_ordinals": false,
-          "index_phrases": false,
-          "fielddata": false,
-          "norms": true,
-          "analyzer": "entity_name",
-          "index": true,
-          "store": false,
-          "type": "text",
-          "index_options": "positions"
-        },
-        "judge": {
-          "type": "nested",
-          "properties": {
-            "judge_type": {
+            "NormalisedJudgeMeta": {
               "type": "object",
               "properties": {
-                "name": {
-                  "eager_global_ordinals": false,
-                  "index_phrases": false,
-                  "fielddata": false,
-                  "norms": true,
-                  "index": true,
-                  "store": false,
-                  "type": "text",
-                  "index_options": "positions"
-                },
-                "id": {
+                "normJudgeId": {
                   "eager_global_ordinals": false,
                   "norms": false,
                   "index": true,
@@ -612,45 +999,79 @@
                 }
               }
             },
-            "name": {
-              "eager_global_ordinals": false,
-              "index_phrases": false,
-              "fielddata": false,
-              "norms": true,
-              "analyzer": "entity_name",
-              "index": true,
-              "store": false,
-              "type": "text",
-              "index_options": "positions",
-              "copy_to": "judge_fullname"
-            },
-            "norm_id": {
-              "eager_global_ordinals": false,
-              "norms": false,
-              "index": true,
-              "store": false,
-              "type": "keyword",
-              "split_queries_on_whitespace": false,
-              "index_options": "docs",
-              "doc_values": true
+            "Contact": {
+            "type": "object",
+            "properties": {
+              "Email": {
+                "type": "object",
+                "properties": {
+                  "emailId": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions"
+                  },
+                  "isVisible": {
+                    "index": true,
+                    "store": false,
+                    "type": "boolean",
+                    "doc_values": true
+                  }
+                }
+              },
+              "Address": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions"
+                  },
+                  "stateName": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions"
+                  },
+                  "zip": {
+                    "eager_global_ordinals": false,
+                    "index_phrases": false,
+                    "fielddata": false,
+                    "norms": true,
+                    "index": true,
+                    "store": false,
+                    "type": "text",
+                    "index_options": "positions"
+                  },
+                  "isVisible": {
+                    "index": true,
+                    "store": false,
+                    "type": "boolean",
+                    "doc_values": true
+                  }
+                }
+              }
             }
           }
+        }
         },
-        "docket_text": {
-          "eager_global_ordinals": false,
-          "index_phrases": false,
-          "fielddata": false,
-          "norms": true,
-          "analyzer": "cust_action_text",
-          "index": true,
-          "store": false,
-          "type": "text",
-          "index_options": "positions"
-        },
-        "docket": {
+        "DocketEntry": {
           "type": "nested",
           "properties": {
-            "action_date": {
+            "docketEntryDate": {
               "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||yyyy-MM||yyyy",
               "index": true,
               "ignore_malformed": false,
@@ -658,7 +1079,7 @@
               "type": "date",
               "doc_values": true
             },
-            "text": {
+            "textRaw": {
               "eager_global_ordinals": false,
               "index_phrases": false,
               "fielddata": false,
@@ -667,8 +1088,82 @@
               "index": true,
               "store": false,
               "type": "text",
-              "index_options": "positions",
-              "copy_to": "docket_text"
+              "index_options": "positions"
+            },
+            "docketNumber": {
+              "index": true,
+              "ignore_malformed": false,
+              "store": false,
+              "type": "integer",
+              "doc_values": true
+            }
+          }
+        },
+        "CaseStats": {
+          "type": "object",
+          "properties": {
+            "partyCount": {
+              "index": true,
+              "ignore_malformed": false,
+              "store": false,
+              "type": "integer",
+              "doc_values": true
+            },
+            "partyContactCount": {
+              "index": true,
+              "ignore_malformed": false,
+              "store": false,
+              "type": "integer",
+              "doc_values": true
+            },
+            "attorneyCount": {
+              "index": true,
+              "ignore_malformed": false,
+              "store": false,
+              "type": "integer",
+              "doc_values": true
+            },
+            "attorneyContactCount": {
+              "index": true,
+              "ignore_malformed": false,
+              "store": false,
+              "type": "integer",
+              "doc_values": true
+            },
+            "judgeCount": {
+              "index": true,
+              "ignore_malformed": false,
+              "store": false,
+              "type": "integer",
+              "doc_values": true
+            },
+            "judgeContactCount": {
+              "index": true,
+              "ignore_malformed": false,
+              "store": false,
+              "type": "integer",
+              "doc_values": true
+            },
+            "docketEntryCount": {
+              "index": true,
+              "ignore_malformed": false,
+              "store": false,
+              "type": "integer",
+              "doc_values": true
+            },
+            "documentCount": {
+              "index": true,
+              "ignore_malformed": false,
+              "store": false,
+              "type": "integer",
+              "doc_values": true
+            },
+            "documentInLibraryCount": {
+              "index": true,
+              "ignore_malformed": false,
+              "store": false,
+              "type": "integer",
+              "doc_values": true
             }
           }
         }

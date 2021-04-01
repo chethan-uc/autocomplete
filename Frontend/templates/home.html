@@ -21,15 +21,18 @@
 
 <body>
 <div class="row">
-    <div style="height: 55vh;" class="card col-md-4">
+    <div style="height: 55vh;" class="card col-md-6">
         <h4 style="padding: 20px;">Search as you Type with Elastic Search</h4>
         <div style="padding: 20px;position:absolute;top: 30%">
-            <input id="source" size="50" />
+            <input id="source" size="100" />
             <div id="result"></div>
         </div>
-        <a onclick="btn_submit()" style="top: 100%" class="btn btn-primary">Submit</a>
+        <div class="col-md-4" style="padding: 20px;position:absolute;top: 50%">
+            <a onclick="btn_submit()" class="btn btn-primary">Submit</a>
+        </div>
+
     </div>
-    <div class="card col-md-8" style="overflow-y: visible;">
+    <div class="card col-md-6" style="overflow-y: visible;">
         <pre id="json-display"></pre>
     </div>
 </div>
@@ -42,27 +45,27 @@
         $result.innerHTML = e.target.value;
 <!--        console.log(e.target.value);-->
 
-        $.ajax({
-            url: "/pipe",
-            type : 'POST',
-            cache: false,
-            data:{'data': e.target.value},
-            success: function(html)
-            {
-<!--                console.log(html.suggest.completer[0].options)-->
-                var data = html.suggest.completer[0].options
-                var _ = []
+<!--        $.ajax({-->
+<!--            url: "/pipe",-->
+<!--            type : 'POST',-->
+<!--            cache: false,-->
+<!--            data:{'data': e.target.value},-->
+<!--            success: function(html)-->
+<!--            {-->
+<!--&lt;!&ndash;                console.log(html.suggest.completer[0].options)&ndash;&gt;-->
+<!--                var data = html.suggest.completer[0].options-->
+<!--                var _ = []-->
 
-                $.each(data, (index, value)=>{
-                    _.push(value._source.title)
-<!--                    console.log(value.title)-->
-                });
-<!--                console.log(_)-->
-                $( "#source" ).autocomplete({
-                    source: _
-                });
-            }
-        });
+<!--                $.each(data, (index, value)=>{-->
+<!--                    _.push(value._source.title)-->
+<!--&lt;!&ndash;                    console.log(value.title)&ndash;&gt;-->
+<!--                });-->
+<!--&lt;!&ndash;                console.log(_)&ndash;&gt;-->
+<!--                $( "#source" ).autocomplete({-->
+<!--                    source: _-->
+<!--                });-->
+<!--            }-->
+<!--        });-->
     }
 
     $source.addEventListener('input', typeHandler) // register for oninput
