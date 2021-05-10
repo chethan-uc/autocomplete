@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import request, render_template
 import requests
 from query_parser.exceptions import ParseSyntaxError
@@ -51,12 +51,12 @@ def json():
             "filedDate": "desc"
         }
         }
-    except ParseSyntaxError as e:
+    except Exception as e:
         payload = {"error": f"{e}"}
 
     # response = requests.get(url="http://10.83.94.249:9200/all_courtcases/_search", data=json.dumps(payload),
     #                         headers={'Content-Type': 'application/json'})
-    return payload
+    return jsonify(payload)
 
 
 def get_response(data):
